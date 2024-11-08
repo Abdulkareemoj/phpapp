@@ -1,6 +1,6 @@
 <?php
 // Database constants
-define('DB_NAME', 'pharmacy');
+define('DB_NAME', 'phpapp');
 define('DB_USER', 'root');
 define('DB_PASS', '');
 define('DB_HOST', 'localhost');
