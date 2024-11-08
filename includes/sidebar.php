@@ -87,7 +87,15 @@
         </div>
     </div>
     <div class="sb-sidenav-footer">
-        <div class="small">Logged in as:</div>
-        Start Bootstrap
+        <div>Logged : in as:</div>
+        <?php
+
+if (isset($_SESSION['username'])) {
+    echo '<div class="">' . htmlspecialchars($_SESSION['username']) . '</div>';
+} else {
+    echo '<div class="small">Not logged in</div>';
+}
+?>
     </div>
+
 </nav>
