@@ -8,6 +8,10 @@ if (!isset($_SESSION['username'])) {
     header("Location: login.php");
     exit;
 }
+if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
+    header("Location: /error/401.php");
+    exit;
+}
 
 // Role-based access control
 $role = $_SESSION['role'];
@@ -22,7 +26,7 @@ if ($role === 'admin') {
     exit;
 } else {
     // Redirect to user dashboard for regular users or allow access to user-only features
-    header("Location: /user/index.php");
+    header("Location: /dashboard/index.php");
     exit;
 }
 ?>
