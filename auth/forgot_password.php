@@ -1,5 +1,5 @@
 <?php
-require_once 'includes/constants.php';
+require_once '../includes/constants.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bind_param("sss", $email, $reset_token, $created_at);
         $stmt->execute();
 
-        $reset_link = "http://phpapp.test/password_reset.php?token=" . $reset_token;
+        $reset_link = "http://phpapp.test/auth/password_reset.php?token=" . $reset_token;
 
         // Send the email
         $to = $email;
@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Forgot Password - SB Admin</title>
-    <link href="css/styles.css" rel="stylesheet" />
+    <link href="../css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <script src="sweetalert2.min.js"></script>
     <link rel="stylesheet" href="sweetalert2.min.css">
@@ -91,13 +91,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                             <a class="small" href="login.php">Return to login</a>
-                                            <button type="submit" class="btn btn-primary" href="forgot_password">Send
+                                            <button type="submit" class="btn btn-primary"
+                                                href="/auth/forgot_password">Send
                                                 Link</button>
                                         </div>
                                     </form>
                                 </div>
                                 <div class="card-footer text-center py-3">
-                                    <div class="small"><a href="register.php">Need an account? Sign up!</a></div>
+                                    <div class="small"><a href="/auth/register.php">Need an account? Sign up!</a></div>
                                 </div>
                             </div>
                         </div>
@@ -106,10 +107,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </main>
         </div>
         <div id="layoutAuthentication_footer">
-            <?php include 'includes/footer.php' ;?>
+            <?php include '../includes/shared/footer.php' ;?>
         </div>
     </div>
-    <?php include 'includes/scripts.php' ;?>
+    <?php include '../includes/scripts.php' ;?>
 </body>
 
 </html>

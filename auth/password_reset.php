@@ -1,5 +1,5 @@
 <?php
-require_once 'includes/constants.php';
+require_once '../includes/constants.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['token'])) {
     $token = $_GET['token'];
     $new_password = $_POST['new_password'];
@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['token'])) {
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Reset Password</title>
-    <link href="css/styles.css" rel="stylesheet" />
+    <link href="../css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <script src="sweetalert2.min.js"></script>
     <link rel="stylesheet" href="sweetalert2.min.css">
@@ -121,10 +121,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['token'])) {
             </main>
         </div>
         <div id="layoutAuthentication_footer">
-            <?php include 'includes/footer.php'; ?>
+            <?php include '../includes/shared/footer.php'; ?>
         </div>
     </div>
-    <?php include 'includes/scripts.php'; ?>
+    <?php include '../includes/scripts.php'; ?>
 </body>
 
 </html>
