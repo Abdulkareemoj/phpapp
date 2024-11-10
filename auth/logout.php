@@ -11,5 +11,5 @@ if (isset($_COOKIE['remember_me'])) {
 }
 
 // Redirect to the login page
-header("Location: ../login.php");
+header("Location: /auth/login.php");
 exit;
