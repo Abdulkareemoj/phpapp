@@ -13,19 +13,20 @@ if (!isset($_SESSION['username'])) {
 // Role-based access control
 $role = $_SESSION['role'] ?? null; // Safely get the role, if set
 
-// Get the current page's script name
-$currentPage = basename($_SERVER['PHP_SELF']);
+// Get the current page's script name and directory
+$currentDir = basename(dirname($_SERVER['PHP_SELF']));
 
-if ($role === 'admin' && $currentPage !== 'index.php') {
-    // Admin access, redirect to admin dashboard only if not already there
+// Check the user role and the directory they are trying to access
+if ($role === 'admin' && $currentDir !== 'admin') {
+    // Admin trying to access a page outside the 'admin' folder
     header("Location: /admin/index.php");
     exit;
-} elseif ($role === 'organizer' && $currentPage !== 'index.php') {
-    // Organizer access, redirect to organizer dashboard only if not already there
+} elseif ($role === 'organizer' && $currentDir !== 'organizer') {
+    // Organizer trying to access a page outside the 'organizer' folder
     header("Location: /organizer/index.php");
     exit;
-} elseif ($role === 'user' && $currentPage !== 'index.php') {
-    // Regular user access, redirect to user dashboard only if not already there
+} elseif ($role === 'user' && $currentDir !== 'dashboard') {
+    // Regular user trying to access a page outside the 'dashboard' folder
     header("Location: /dashboard/index.php");
     exit;
 } elseif (!$role) {
