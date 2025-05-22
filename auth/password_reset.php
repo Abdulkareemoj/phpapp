@@ -1,5 +1,20 @@
 <?php
 require_once '../includes/constants.php';
+if (!isset($_GET['token']) || empty($_GET['token'])) {
+    echo "<script>
+            document.addEventListener('DOMContentLoaded', function () {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Missing Token',
+                    text: 'Password reset token is missing.'
+                }).then(() => {
+                    window.location.href = 'forgot_password.php';
+                });
+            });
+          </script>";
+    exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['token'])) {
     $token = $_GET['token'];
     $new_password = $_POST['new_password'];
@@ -32,30 +47,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['token'])) {
 
             if ($stmt->affected_rows > 0) {
                 echo "<script>
+                document.addEventListener('DOMContentLoaded', function () {
                         Swal.fire({
                             icon: 'success',
                             title: 'Password Updated',
                             text: 'Your password has been successfully reset. You can now log in.'
                         }).then(() => {
                             window.location.href = 'login.php';
-                        });
+                        }); });
                       </script>";
             } else {
                 echo "<script>
+                   document.addEventListener('DOMContentLoaded', function () {
                         Swal.fire({
                             icon: 'error',
                             title: 'Error',
                             text: 'Something went wrong. Please try again.'
-                        });
+                        }); });
                       </script>";
             }
         } else {
             echo "<script>
+               document.addEventListener('DOMContentLoaded', function () {
                     Swal.fire({
                         icon: 'error',
                         title: 'Invalid Token',
                         text: 'The reset link is invalid or expired.'
-                    });
+                    }); });
                   </script>";
         }
 

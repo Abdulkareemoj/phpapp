@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 session_start();
                 $_SESSION['user_id'] = $id;
                 $_SESSION['username'] = $username;
-                $_SESSION['role'] = $role; // Store role in session
+                $_SESSION['role'] = $role;
                 $_SESSION['email'] = $email;
 
                 // Redirect based on user role
@@ -41,15 +41,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
                 exit;
             } else {
-                echo "<p style='color: red;'>Incorrect password.</p>";
+                $alert = [
+                    'icon' => 'error',
+                    'title' => 'Login Failed',
+                    'text' => 'Incorrect password.'
+                ];
             }
         } else {
-            echo "<p style='color: red;'>No user found with that email/username.</p>";
+            $alert = [
+                'icon' => 'error',
+                'title' => 'Login Failed',
+                'text' => 'No user found with that email or username.'
+            ];
         }
     } else {
-        echo "<p style='color: red;'>Please fill in all fields.</p>";
+        $alert = [
+            'icon' => 'warning',
+            'title' => 'Incomplete Fields',
+            'text' => 'Please fill in all fields.'
+        ];
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -119,6 +132,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
     <?php include '../includes/scripts.php' ;?>
+    <?php if (isset($alert)): ?>
+    <script>
+    Swal.fire({
+        icon: '<?= $alert['icon'] ?>',
+        title: '<?= $alert['title'] ?>',
+        text: '<?= $alert['text'] ?>',
+    });
+    </script>
+    <?php endif; ?>
+
 </body>
 
 </html>
