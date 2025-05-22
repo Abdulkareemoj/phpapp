@@ -15,7 +15,7 @@
 
     <section class="container mt-5">
         <h1>Organize Page</h1>
-        <p>This is the category page content.</p>
+        <p>This is the organize page content.</p>
     </section>
 
 

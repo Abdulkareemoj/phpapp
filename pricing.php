@@ -14,8 +14,8 @@
     <?php  include './includes/landing/header.php'?>
 
     <section class="container mt-5">
-        <h1>Category Page</h1>
-        <p>This is the category page content.</p>
+        <h1>Pricing Page</h1>
+        <p>This is the pricing page content.</p>
     </section>
 
     <?php  include './includes/shared/footer.php'?>
